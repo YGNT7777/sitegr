@@ -18,9 +18,10 @@ intro:
 
 
   {% include dynamic.html id="posts" category="Posts" index=0 %}
-
-  {% assign random = site.time | date: "%s%N" | modulo: site.projects.size %}
-
-  {% include dynamic.html id="projects" category="Projects" index=random %}
-
+  {% if site.projects.size > 0 %}
+    {% assign random = site.time | date: "%s%N" | modulo: site.projects.size %}
+    {% include dynamic.html id="projects" category="Projects" index=random %}
+  {% else %}
+    <p>No projects available.</p>  <!-- or some other fallback content -->
+  {% endif %}
   {% include twitter-module.html %}
