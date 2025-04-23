@@ -1,0 +1,23 @@
+# .github/actions/check-sensitive-files/action.yml
+
+name: 'Check Sensitive Files'
+description: 'Checks if sensitive files are changed in a pull request and rejects if so'
+
+inputs:
+  GITHUB_TOKEN:
+    description: 'GitHub Token to authenticate the API requests.'
+    required: true
+  PR_NUMBER:
+    description: 'The number of the pull request.'
+    required: true
+  BYPASS_LABEL:
+    description: 'The label to bypass sensitive file checks.'
+    required: false
+    default: 'allow-sensitive-change'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.GITHUB_TOKEN }}
+    - ${{ inputs.PR_NUMBER }}
