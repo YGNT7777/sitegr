@@ -32,7 +32,7 @@ if not token:
 repo = os.environ['GITHUB_REPOSITORY']
 pr_number = sys.argv[2]
 
-locked_file_path = "lockedFiles.txt"
+locked_file_path = ".lockedFiles"
 
 
 if not os.path.exists(locked_file_path):
@@ -64,22 +64,12 @@ changed_files = [file['filename'] for file in files_resp.json()]
 
 sensitive_changes = [f for f in changed_files if f in sensitive_files]
 
-gif_url = "https://media1.tenor.com/m/xqBYue2tGlwAAAAC/goku-prowler.gif"
 
 if sensitive_changes:
-    msg = "\n".join([f"❌ Sensitive file changed: `{f}`" for f in sensitive_changes]) + f"\n\n![Goku Stare]({gif_url})"
+    msg = "\n".join([f"❌ Sensitive file changed: `{f}`" for f in sensitive_changes])
     post_comment(pr_number, msg, token)
     close_pull_request(pr_number, token)
     exit(1)
 else:
     post_comment(pr_number, "✅ No sensitive files changed.", token)
 
-'''
-for f in changed_files:
-    if f in sensitive_files:
-        print(f"❌ Sensitive file changed: {f}")
-        sys.exit(1)
-
-print("✅ No sensitive files changed.")
-sys.exit(0)
-'''

@@ -1,8 +1,0 @@
-README.md
-.gitignore
-.gitmodules
-.ruby-version
-.Gemfile
-LICENSE
-_config.yml
-index.html

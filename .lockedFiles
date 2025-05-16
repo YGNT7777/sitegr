@@ -1,0 +1,13 @@
+README.md
+.gitignore
+.gitmodules
+.ruby-version
+.Gemfile
+LICENSE
+_config.yml
+index.html
+.github/actions/check-sensitive-files/Dockerfile
+.github/actions/check-sensitive-files/action.yml
+.github/actions/check-sensitive-files/check.py
+.github/workflows/pr-check.yml
+.lockedFiles
